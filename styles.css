@@ -1,0 +1,476 @@
+/* =============================================
+   📌 0. 디자인 토큰 (Design Tokens)
+   style-guide.md의 모든 값을 CSS 변수로 등록
+   집의 자재 창고처럼, 한번 등록하면 어디서든 꺼내 씀
+   ============================================= */
+:root {
+  /* --- 색상 (Colors) --- */
+  /* 포인트색: 초록 계열 */
+  --color-green-200: hsl(148, 38%, 91%); /* 연한 민트 (선택된 라디오 배경색) */
+  --color-green-600: hsl(169, 82%, 27%); /* 진한 초록 (버튼 배경, 체크 아이콘) */
+  /* 포인트색: 에러 빨강 */
+  --color-red:       hsl(0, 66%, 54%);   /* 에러 메시지, 에러 테두리 */
+  /* 중립색 (Neutral) */
+  --color-white:     hsl(0, 0%, 100%);   /* 카드 배경, 버튼 텍스트 */
+  --color-grey-500:  hsl(186, 15%, 59%); /* 보조 텍스트, 플레이스홀더 */
+  --color-grey-900:  hsl(187, 24%, 22%); /* 메인 텍스트, 제목 */
+
+  /* --- 타이포그래피 (Typography) --- */
+  --font-family: 'Karla', sans-serif;    /* 프로젝트 전체 폰트 */
+  /* 글씨 크기 */
+  --font-size-heading: 2rem;             /* 32px: 제목 */
+  --font-size-body-md: 1.125rem;         /* 18px: 본문 중간 */
+  --font-size-body-sm: 1rem;             /* 16px: 본문 작음 (라벨, 에러 등) */
+  /* 줄 간격 */
+  --line-height-heading: 1;             /* 100% */
+  --line-height-body:    1.5;           /* 150% */
+  /* 자간 */
+  --letter-spacing-heading: -1px;       /* 제목 자간을 살짝 좁혀서 단단하게 */
+
+  /* --- 간격 (Spacing) --- */
+  --spacing-1600: 8rem;    /* 128px: 초대형 */
+  --spacing-500:  2.5rem;  /* 40px */
+  --spacing-400:  2rem;    /* 32px */
+  --spacing-300:  1.5rem;  /* 24px */
+  --spacing-200:  1rem;    /* 16px */
+  --spacing-150:  0.75rem; /* 12px */
+  --spacing-100:  0.5rem;  /* 8px */
+
+  /* --- 기타 (Misc) --- */
+  --border-radius-card:  0.75rem; /* 카드 모서리 둥글기: 12px */
+  --border-radius-input: 0.5rem;  /* 입력창 모서리 둥글기: 8px */
+  --border-color:        var(--color-grey-500); /* 기본 테두리 색 */
+}
+
+
+/* =============================================
+   📌 1. 전역 리셋 (Global Reset)
+   브라우저마다 다른 기본 스타일을 초기화해서
+   모든 곳에서 동일하게 보이도록 맞춰줌
+   ============================================= */
+*,
+*::before,
+*::after {
+  /* box-sizing: border-box
+     padding과 border를 너비(width)에 포함시켜 계산
+     집 벽 두께를 면적에 포함시키는 것처럼 직관적인 크기 계산 */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================
+   📌 2. 기본 바디 설정 (Base)
+   ============================================= */
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body-sm); /* 16px 기본값 */
+  color: var(--color-grey-900);
+  line-height: var(--line-height-body);
+  background-color: var(--color-green-200); /* 페이지 전체 민트 배경 */
+}
+
+/* 스크린 리더 전용 숨김 클래스
+   화면에는 보이지 않지만 스크린 리더가 읽을 수 있음 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =============================================
+   📌 3. 페이지 레이아웃 (Page Layout)
+   카드를 화면 중앙에 배치하는 컨테이너
+   ============================================= */
+.page {
+  /* 최소 높이를 화면 전체(100dvh)로 설정 */
+  min-height: 100dvh;
+  /* Flexbox로 카드를 수직+수평 중앙 배치 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 카드가 화면 끝에 붙지 않도록 여백 */
+  padding: var(--spacing-400) var(--spacing-200);
+}
+
+
+/* =============================================
+   📌 4. 카드 (Card)
+   폼을 감싸는 흰색 둥근 박스
+   ============================================= */
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  padding: var(--spacing-400); /* 32px */
+  width: 100%;
+  /* 카드의 최대 너비: 데스크탑에서 너무 넓어지는 것 방지 */
+  max-width: 46rem; /* 736px */
+}
+
+/* 카드 제목: "Contact Us" */
+.card__title {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-grey-900);
+  margin-bottom: var(--spacing-400); /* 제목과 폼 사이 간격: 32px */
+}
+
+
+/* =============================================
+   📌 5. 폼 레이아웃 (Form Layout)
+   ============================================= */
+.form {
+  /* 각 폼 필드 사이의 간격: 24px */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+/* fieldset 기본 스타일 초기화 */
+.form__name-group {
+  border: none;
+  padding: 0;
+  /* 모바일: 이름/성이 세로로 배치 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+/* 데스크탑(768px 이상): 이름/성이 가로로 나란히 배치 */
+@media (min-width: 768px) {
+  .form__name-group {
+    flex-direction: row;
+  }
+
+  /* 나란히 배치될 때 각 필드가 반반씩 공간 차지 */
+  .form__name-group .form__field {
+    flex: 1;
+  }
+}
+
+
+/* =============================================
+   📌 6. 폼 필드 공통 (Form Fields)
+   라벨, 입력창, 에러메시지를 하나로 묶는 단위
+   ============================================= */
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100); /* 라벨과 입력창 사이 간격: 8px */
+}
+
+/* fieldset은 border 기본값이 있어서 초기화 필요 */
+fieldset.form__field {
+  border: none;
+  padding: 0;
+}
+
+
+/* =============================================
+   📌 7. 라벨 (Labels)
+   ============================================= */
+.form__label {
+  font-size: var(--font-size-body-sm); /* 16px */
+  font-weight: 400;
+  color: var(--color-grey-900);
+  cursor: pointer; /* 손가락 커서: 클릭 가능함을 암시 */
+}
+
+/* 필수 항목 별표(*)의 색상 */
+.form__required {
+  color: var(--color-green-600);
+  margin-left: 0.25rem;
+}
+
+
+/* =============================================
+   📌 8. 입력창 (Inputs & Textarea)
+   모든 text 입력창에 공통으로 적용
+   ============================================= */
+.form__input {
+  width: 100%;
+  padding: var(--spacing-150) var(--spacing-300); /* 세로 12px, 가로 24px */
+  font-family: var(--font-family);
+  font-size: var(--font-size-body-md); /* 18px */
+  color: var(--color-grey-900);
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-input);
+  /* 부드러운 테두리 색 전환 애니메이션 */
+  transition: border-color 0.2s ease;
+  /* outline 제거 후 직접 스타일 처리 (접근성 대신 :focus-visible로 제공) */
+  outline: none;
+  cursor: pointer;
+}
+
+/* 호버(마우스를 올렸을 때): 테두리를 진한 초록으로 변경 */
+.form__input:hover {
+  border-color: var(--color-green-600);
+}
+
+/* 포커스(키보드 탭 또는 클릭으로 선택했을 때): 테두리를 진한 초록으로 변경 */
+.form__input:focus-visible {
+  border-color: var(--color-green-600);
+  /* 시각적 포커스 링: 키보드 사용자를 위한 필수 접근성 요소 */
+  box-shadow: 0 0 0 2px var(--color-green-600);
+}
+
+/* 에러 상태: JS에서 .is-error 클래스를 추가할 때 */
+.form__input.is-error {
+  border-color: var(--color-red);
+}
+
+/* textarea만 적용: 높이 고정, 크기 조절 방향 제한 */
+.form__input--textarea {
+  resize: vertical; /* 세로 방향으로만 크기 조절 가능 */
+  min-height: 9.375rem; /* 최소 높이: 150px */
+}
+
+
+/* =============================================
+   📌 9. 라디오 버튼 그룹 (Radio Buttons)
+   ============================================= */
+.form__radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200); /* 라디오 버튼 사이 간격: 16px */
+}
+
+/* 각 라디오 버튼 옵션을 감싸는 박스 */
+.form__radio-label {
+  /* 원형 라디오와 텍스트를 수평 정렬 */
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  padding: var(--spacing-150) var(--spacing-300);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-input);
+  font-size: var(--font-size-body-md); /* 18px */
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 라디오 라벨 호버 */
+.form__radio-label:hover {
+  border-color: var(--color-green-600);
+}
+
+/* 라디오 버튼이 선택(checked)됐을 때: 부모 라벨 스타일 변경 */
+/* :has() 선택자: "내부에 checked된 input을 가진" 라벨을 선택 */
+.form__radio-label:has(.form__radio:checked) {
+  background-color: var(--color-green-200); /* 민트 배경 */
+  border-color: var(--color-green-600);     /* 진한 초록 테두리 */
+}
+
+/* 기본 라디오 버튼 외형 커스터마이징 */
+.form__radio {
+  /* 브라우저 기본 라디오 모양 제거 */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.25rem;  /* 20px */
+  height: 1.25rem; /* 20px */
+  border: 1px solid var(--border-color);
+  border-radius: 50%; /* 원형으로 */
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  /* 중앙에 체크 점을 그리기 위한 레이어 준비 */
+  display: grid;
+  place-items: center;
+  flex-shrink: 0; /* 텍스트가 길어도 라디오 원이 찌그러지지 않도록 */
+}
+
+/* 선택됐을 때 라디오 내부에 초록 점 그리기 */
+.form__radio:checked {
+  border-color: var(--color-green-600);
+}
+
+/* ::before 가상 요소로 내부 채워진 원(점) 생성 */
+.form__radio:checked::before {
+  content: '';
+  width: 0.625rem;  /* 10px */
+  height: 0.625rem; /* 10px */
+  border-radius: 50%;
+  background-color: var(--color-green-600);
+}
+
+/* 데스크탑(768px 이상): 라디오 버튼을 가로로 나란히 배치 */
+@media (min-width: 768px) {
+  .form__radio-group {
+    flex-direction: row;
+  }
+
+  /* 나란히 배치될 때 각 라디오 옵션이 반반씩 공간 차지 */
+  .form__radio-label {
+    flex: 1;
+  }
+}
+
+
+/* =============================================
+   📌 10. 체크박스 (Checkbox)
+   ============================================= */
+.form__field--checkbox {
+  gap: var(--spacing-150);
+}
+
+.form__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  font-size: var(--font-size-body-md); /* 18px */
+  cursor: pointer;
+}
+
+/* 기본 체크박스 커스터마이징 */
+.form__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.125rem;  /* 18px */
+  height: 1.125rem; /* 18px */
+  border: 1px solid var(--border-color);
+  border-radius: 0.125rem; /* 약간 둥근 모서리 */
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  /* 체크 표시를 내부 중앙에 배치 */
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.form__checkbox:hover {
+  border-color: var(--color-green-600);
+}
+
+/* 체크됐을 때: 진한 초록색 배경 + 흰 체크 표시 */
+.form__checkbox:checked {
+  background-color: var(--color-green-600);
+  border-color: var(--color-green-600);
+}
+
+/* 체크 표시 (✓)를 CSS로 그리기 */
+.form__checkbox:checked::before {
+  content: '';
+  width: 0.7rem;
+  height: 0.35rem;
+  border-left: 2px solid var(--color-white);
+  border-bottom: 2px solid var(--color-white);
+  transform: rotate(-45deg) translateY(-2px); /* 체크 모양으로 기울이기 */
+}
+
+/* 체크박스 포커스 링 (접근성) */
+.form__checkbox:focus-visible {
+  outline: 2px solid var(--color-green-600);
+  outline-offset: 2px;
+}
+
+
+/* =============================================
+   📌 11. 에러 메시지 (Error Messages)
+   ============================================= */
+.form__error {
+  font-size: var(--font-size-body-sm); /* 16px */
+  color: var(--color-red);
+  /* 기본적으로 숨겨져 있음 (JS에서 hidden 속성으로 제어) */
+}
+
+
+/* =============================================
+   📌 12. 제출 버튼 (Submit Button)
+   ============================================= */
+.form__submit-btn {
+  width: 100%;
+  padding: var(--spacing-200) var(--spacing-400); /* 세로 16px, 가로 32px */
+  font-family: var(--font-family);
+  font-size: var(--font-size-body-md); /* 18px */
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-green-600);
+  border: none;
+  border-radius: var(--border-radius-input);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* 버튼 호버: 배경색을 살짝 어둡게 */
+.form__submit-btn:hover {
+  background-color: hsl(169, 82%, 18%); /* Green 600보다 어두운 버전 */
+}
+
+/* 버튼 클릭(active): 살짝 눌리는 효과 */
+.form__submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* 버튼 포커스 링 (접근성) */
+.form__submit-btn:focus-visible {
+  outline: 2px solid var(--color-green-600);
+  outline-offset: 3px;
+}
+
+
+/* =============================================
+   📌 13. 성공 토스트 (Toast Notification)
+   폼 제출 성공 시 화면 상단에 나타나는 알림창
+   ============================================= */
+.toast {
+  position: fixed;              /* 스크롤해도 항상 같은 위치에 표시 */
+  top: var(--spacing-300);      /* 화면 상단에서 24px 아래 */
+  left: 50%;
+  transform: translateX(-50%); /* 수평 중앙 정렬 트릭 */
+  background-color: var(--color-grey-900);
+  color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  padding: var(--spacing-300) var(--spacing-400);
+  max-width: 28rem; /* 448px */
+  width: calc(100% - var(--spacing-400)); /* 좌우 여백 확보 */
+  /* 토스트가 항상 맨 위에 보이도록 */
+  z-index: 1000;
+}
+
+/* 토스트 상단: 아이콘 + "Message Sent!" 텍스트 줄 */
+.toast__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+  margin-bottom: var(--spacing-100);
+}
+
+.toast__icon {
+  flex-shrink: 0;
+}
+
+.toast__title {
+  font-size: var(--font-size-body-md); /* 18px */
+  font-weight: 700;
+  line-height: var(--line-height-body);
+}
+
+.toast__body {
+  font-size: var(--font-size-body-sm); /* 16px */
+  color: var(--color-grey-500);
+  line-height: var(--line-height-body);
+}
+
+
+/* =============================================
+   📌 14. 출처 표시 (Attribution Footer)
+   ============================================= */
+.attribution {
+  font-size: 0.6875rem; /* 11px */
+  text-align: center;
+  padding: var(--spacing-200) 0 var(--spacing-300);
+  color: var(--color-grey-900);
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}

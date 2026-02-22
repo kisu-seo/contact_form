@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 페이지 제목: 탭이나 스크린 리더가 읽는 이름 -->
+  <title>Contact Form</title>
+
+  <!-- SEO: 검색 엔진에 이 페이지가 어떤 곳인지 알려주는 설명 -->
+  <meta name="description" content="고객 문의 및 지원 요청을 위한 연락처 폼 페이지입니다.">
+
+  <!-- 구글 폰트: Karla (400 Regular, 700 Bold) 불러오기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- 우리가 만들 스타일 파일 연결 -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- 자바스크립트 파일 연결
+       defer: HTML 파싱이 모두 끝난 뒤에 실행 → DOM이 준비된 상태 보장
+       head에 두어도 body보다 나중에 실행되므로 안전함 -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- =============================================
+       [핵심 구조] <main>: 페이지의 주요 콘텐츠 영역
+       스크린 리더가 "여기가 핵심 내용이야!"라고 바로 파악함
+       ============================================= -->
+  <main class="page" aria-label="Contact form page">
+
+    <!-- =============================================
+         폼 카드 컨테이너: 흰 배경의 둥근 박스
+         ============================================= -->
+    <section class="card" aria-label="Contact form card">
+
+      <!-- 폼 제목: 페이지에서 <h1>은 단 하나만 사용 (SEO 규칙) -->
+      <h1 class="card__title">Contact Us</h1>
+
+      <!-- =============================================
+           <form>: 실제 데이터를 담는 그릇
+           novalidate = 브라우저 기본 팝업 대신 우리가 직접 JS로 검사하겠다는 선언
+           ============================================= -->
+      <form id="contact-form" class="form" novalidate aria-label="문의 폼">
+
+        <!-- =============================================
+             [이름 그룹] First Name + Last Name
+             모바일: 1단 배치 / 데스크탑: 2단 나란히
+             <fieldset>: 연관된 입력 묶음을 하나의 의미 단위로 묶어줌
+             ============================================= -->
+        <fieldset class="form__name-group" aria-label="이름 입력 그룹">
+          <!-- <legend>: fieldset의 "대표 타이틀" (스크린 리더가 읽어줌) -->
+          <!-- 시각적으로는 숨기고 스크린 리더에만 제공하는 패턴 -->
+          <legend class="sr-only">이름 정보</legend>
+
+          <!-- 이름(First Name) 필드 -->
+          <div class="form__field">
+            <!-- <label>: 입력창의 이름표, for="id명"으로 input과 1:1 연결 -->
+            <label for="first-name" class="form__label">
+              First Name <span class="form__required" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="first-name" name="first-name" class="form__input" autocomplete="given-name"
+              aria-required="true" aria-describedby="first-name-error">
+            <!-- 에러 메시지: aria-describedby로 input과 연결, 평소엔 숨김 -->
+            <p id="first-name-error" class="form__error" role="alert" hidden>
+              This field is required
+            </p>
+          </div>
+
+          <!-- 성(Last Name) 필드 -->
+          <div class="form__field">
+            <label for="last-name" class="form__label">
+              Last Name <span class="form__required" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="last-name" name="last-name" class="form__input" autocomplete="family-name"
+              aria-required="true" aria-describedby="last-name-error">
+            <p id="last-name-error" class="form__error" role="alert" hidden>
+              This field is required
+            </p>
+          </div>
+        </fieldset>
+
+        <!-- =============================================
+             [이메일] Email Address 필드
+             ============================================= -->
+        <div class="form__field">
+          <label for="email" class="form__label">
+            Email Address <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <input type="email" id="email" name="email" class="form__input" autocomplete="email" aria-required="true"
+            aria-describedby="email-error">
+          <p id="email-error" class="form__error" role="alert" hidden>
+            Please enter a valid email address
+          </p>
+        </div>
+
+        <!-- =============================================
+             [쿼리 타입] Query Type - 라디오 버튼 그룹
+             <fieldset> + <legend>: 라디오 버튼처럼 "하나를 고르는" UI에 반드시 필요
+             ============================================= -->
+        <fieldset class="form__field" aria-describedby="query-type-error">
+          <legend class="form__label">
+            Query Type <span class="form__required" aria-hidden="true">*</span>
+          </legend>
+
+          <!-- 라디오 버튼 옵션들을 감싸는 컨테이너 -->
+          <div class="form__radio-group">
+
+            <!-- 라디오 옵션 1: General Enquiry -->
+            <label for="general-enquiry" class="form__radio-label">
+              <input type="radio" id="general-enquiry" name="query-type" value="general-enquiry" class="form__radio"
+                aria-required="true">
+              General Enquiry
+            </label>
+
+            <!-- 라디오 옵션 2: Support Request -->
+            <label for="support-request" class="form__radio-label">
+              <input type="radio" id="support-request" name="query-type" value="support-request" class="form__radio"
+                aria-required="true">
+              Support Request
+            </label>
+          </div>
+
+          <!-- 쿼리 타입 에러 메시지 -->
+          <p id="query-type-error" class="form__error" role="alert" hidden>
+            Please select a query type
+          </p>
+        </fieldset>
+
+        <!-- =============================================
+             [메시지] Message 텍스트에어리어
+             ============================================= -->
+        <div class="form__field">
+          <label for="message" class="form__label">
+            Message <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <textarea id="message" name="message" class="form__input form__input--textarea" rows="6" aria-required="true"
+            aria-describedby="message-error"></textarea>
+          <p id="message-error" class="form__error" role="alert" hidden>
+            This field is required
+          </p>
+        </div>
+
+        <!-- =============================================
+             [동의 체크박스] I consent to being contacted
+             ============================================= -->
+        <div class="form__field form__field--checkbox">
+          <label for="consent" class="form__checkbox-label">
+            <input type="checkbox" id="consent" name="consent" class="form__checkbox" aria-required="true"
+              aria-describedby="consent-error">
+            I consent to being contacted by the team
+            <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <p id="consent-error" class="form__error" role="alert" hidden>
+            To submit this form, please consent to being contacted
+          </p>
+        </div>
+
+        <!-- =============================================
+             [제출 버튼] Submit
+             type="submit": 클릭 시 form의 submit 이벤트 발생
+             ============================================= -->
+        <button type="submit" id="submit-btn" class="form__submit-btn">
+          Submit
+        </button>
+
+      </form>
+    </section>
+
+    <!-- =============================================
+         [성공 토스트] 폼 제출 성공 시 화면 상단에 나타나는 알림창
+         aria-live="polite": 스크린 리더가 방해 없이 다음 차례에 읽어줌
+         hidden: 기본적으로 숨겨져 있다가 JS로 보여줌
+         ============================================= -->
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <!-- 토스트 아이콘 + 제목 -->
+      <div class="toast__header">
+        <!-- 체크 아이콘 (인라인 SVG: 별도 이미지 파일 없이 코드로 그림) -->
+        <svg class="toast__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+          fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="10" fill="#FFFFFF" fill-opacity="0.3" />
+          <path d="M6 10.5L8.5 13L14 7.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <h2 class="toast__title">Message Sent!</h2>
+      </div>
+      <!-- 토스트 본문 설명 -->
+      <p class="toast__body">Thanks for completing the form. We'll be in touch soon!</p>
+    </div>
+
+  </main>
+
+
+
+</body>
+
+</html>
