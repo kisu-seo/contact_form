@@ -6,40 +6,63 @@
 :root {
   /* --- 색상 (Colors) --- */
   /* 포인트색: 초록 계열 */
-  --color-green-200: hsl(148, 38%, 91%); /* 연한 민트 (선택된 라디오 배경색) */
-  --color-green-600: hsl(169, 82%, 27%); /* 진한 초록 (버튼 배경, 체크 아이콘) */
+  --color-green-200: hsl(148, 38%, 91%);
+  /* 연한 민트 (선택된 라디오 배경색) */
+  --color-green-600: hsl(169, 82%, 27%);
+  /* 진한 초록 (버튼 배경, 체크 아이콘) */
   /* 포인트색: 에러 빨강 */
-  --color-red:       hsl(0, 66%, 54%);   /* 에러 메시지, 에러 테두리 */
+  --color-red: hsl(0, 66%, 54%);
+  /* 에러 메시지, 에러 테두리 */
   /* 중립색 (Neutral) */
-  --color-white:     hsl(0, 0%, 100%);   /* 카드 배경, 버튼 텍스트 */
-  --color-grey-500:  hsl(186, 15%, 59%); /* 보조 텍스트, 플레이스홀더 */
-  --color-grey-900:  hsl(187, 24%, 22%); /* 메인 텍스트, 제목 */
+  --color-white: hsl(0, 0%, 100%);
+  /* 카드 배경, 버튼 텍스트 */
+  --color-grey-500: hsl(186, 15%, 59%);
+  /* 보조 텍스트, 플레이스홀더 */
+  --color-grey-900: hsl(187, 24%, 22%);
+  /* 메인 텍스트, 제목 */
 
   /* --- 타이포그래피 (Typography) --- */
-  --font-family: 'Karla', sans-serif;    /* 프로젝트 전체 폰트 */
+  --font-family: 'Karla', sans-serif;
+  /* 프로젝트 전체 폰트 */
   /* 글씨 크기 */
-  --font-size-heading: 2rem;             /* 32px: 제목 */
-  --font-size-body-md: 1.125rem;         /* 18px: 본문 중간 */
-  --font-size-body-sm: 1rem;             /* 16px: 본문 작음 (라벨, 에러 등) */
+  --font-size-heading: 2rem;
+  /* 32px: 제목 */
+  --font-size-body-md: 1.125rem;
+  /* 18px: 본문 중간 */
+  --font-size-body-sm: 1rem;
+  /* 16px: 본문 작음 (라벨, 에러 등) */
   /* 줄 간격 */
-  --line-height-heading: 1;             /* 100% */
-  --line-height-body:    1.5;           /* 150% */
+  --line-height-heading: 1;
+  /* 100% */
+  --line-height-body: 1.5;
+  /* 150% */
   /* 자간 */
-  --letter-spacing-heading: -1px;       /* 제목 자간을 살짝 좁혀서 단단하게 */
+  --letter-spacing-heading: -1px;
+  /* 제목 자간을 살짝 좁혀서 단단하게 */
 
   /* --- 간격 (Spacing) --- */
-  --spacing-1600: 8rem;    /* 128px: 초대형 */
-  --spacing-500:  2.5rem;  /* 40px */
-  --spacing-400:  2rem;    /* 32px */
-  --spacing-300:  1.5rem;  /* 24px */
-  --spacing-200:  1rem;    /* 16px */
-  --spacing-150:  0.75rem; /* 12px */
-  --spacing-100:  0.5rem;  /* 8px */
+  --spacing-1600: 8rem;
+  /* 128px: 초대형 */
+  --spacing-500: 2.5rem;
+  /* 40px */
+  --spacing-400: 2rem;
+  /* 32px */
+  --spacing-300: 1.5rem;
+  /* 24px */
+  --spacing-200: 1rem;
+  /* 16px */
+  --spacing-150: 0.75rem;
+  /* 12px */
+  --spacing-100: 0.5rem;
+  /* 8px */
 
   /* --- 기타 (Misc) --- */
-  --border-radius-card:  0.75rem; /* 카드 모서리 둥글기: 12px */
-  --border-radius-input: 0.5rem;  /* 입력창 모서리 둥글기: 8px */
-  --border-color:        var(--color-grey-500); /* 기본 테두리 색 */
+  --border-radius-card: 0.75rem;
+  /* 카드 모서리 둥글기: 12px */
+  --border-radius-input: 0.5rem;
+  /* 입력창 모서리 둥글기: 8px */
+  --border-color: var(--color-grey-500);
+  /* 기본 테두리 색 */
 }
 
 
@@ -64,10 +87,12 @@
    ============================================= */
 body {
   font-family: var(--font-family);
-  font-size: var(--font-size-body-sm); /* 16px 기본값 */
+  font-size: var(--font-size-body-sm);
+  /* 16px 기본값 */
   color: var(--color-grey-900);
   line-height: var(--line-height-body);
-  background-color: var(--color-green-200); /* 페이지 전체 민트 배경 */
+  background-color: var(--color-green-200);
+  /* 페이지 전체 민트 배경 */
 }
 
 /* 스크린 리더 전용 숨김 클래스
@@ -108,10 +133,12 @@ body {
 .card {
   background-color: var(--color-white);
   border-radius: var(--border-radius-card);
-  padding: var(--spacing-400); /* 32px */
+  padding: var(--spacing-300);
+  /* 32px */
   width: 100%;
   /* 카드의 최대 너비: 데스크탑에서 너무 넓어지는 것 방지 */
-  max-width: 46rem; /* 736px */
+  max-width: 46rem;
+  /* 736px */
 }
 
 /* 카드 제목: "Contact Us" */
@@ -121,7 +148,8 @@ body {
   line-height: var(--line-height-heading);
   letter-spacing: var(--letter-spacing-heading);
   color: var(--color-grey-900);
-  margin-bottom: var(--spacing-400); /* 제목과 폼 사이 간격: 32px */
+  margin-bottom: var(--spacing-400);
+  /* 제목과 폼 사이 간격: 32px */
 }
 
 
@@ -165,7 +193,8 @@ body {
 .form__field {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-100); /* 라벨과 입력창 사이 간격: 8px */
+  gap: var(--spacing-100);
+  /* 라벨과 입력창 사이 간격: 8px */
 }
 
 /* fieldset은 border 기본값이 있어서 초기화 필요 */
@@ -179,16 +208,18 @@ fieldset.form__field {
    📌 7. 라벨 (Labels)
    ============================================= */
 .form__label {
-  font-size: var(--font-size-body-sm); /* 16px */
+  font-size: var(--font-size-body-sm);
+  /* 16px */
   font-weight: 400;
   color: var(--color-grey-900);
-  cursor: pointer; /* 손가락 커서: 클릭 가능함을 암시 */
+  cursor: pointer;
+  /* 손가락 커서: 클릭 가능함을 암시 */
 }
 
 /* 필수 항목 별표(*)의 색상 */
 .form__required {
   color: var(--color-green-600);
-  margin-left: 0.25rem;
+  margin-left: var(--spacing-100);
 }
 
 
@@ -198,9 +229,11 @@ fieldset.form__field {
    ============================================= */
 .form__input {
   width: 100%;
-  padding: var(--spacing-150) var(--spacing-300); /* 세로 12px, 가로 24px */
+  padding: var(--spacing-150) var(--spacing-300);
+  /* 세로 12px, 가로 24px */
   font-family: var(--font-family);
-  font-size: var(--font-size-body-md); /* 18px */
+  font-size: var(--font-size-body-md);
+  /* 18px */
   color: var(--color-grey-900);
   background-color: transparent;
   border: 1px solid var(--border-color);
@@ -231,8 +264,10 @@ fieldset.form__field {
 
 /* textarea만 적용: 높이 고정, 크기 조절 방향 제한 */
 .form__input--textarea {
-  resize: vertical; /* 세로 방향으로만 크기 조절 가능 */
-  min-height: 9.375rem; /* 최소 높이: 150px */
+  resize: vertical;
+  /* 세로 방향으로만 크기 조절 가능 */
+  min-height: 9.375rem;
+  /* 최소 높이: 150px */
 }
 
 
@@ -242,7 +277,10 @@ fieldset.form__field {
 .form__radio-group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-200); /* 라디오 버튼 사이 간격: 16px */
+  gap: var(--spacing-200);
+  /* 라디오 버튼 사이 간격: 16px */
+  margin-top: var(--spacing-200);
+  /* 라벨과 라디오 그룹 사이 간격: 16px */
 }
 
 /* 각 라디오 버튼 옵션을 감싸는 박스 */
@@ -250,11 +288,12 @@ fieldset.form__field {
   /* 원형 라디오와 텍스트를 수평 정렬 */
   display: flex;
   align-items: center;
-  gap: var(--spacing-200);
+  gap: var(--spacing-150);
   padding: var(--spacing-150) var(--spacing-300);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-input);
-  font-size: var(--font-size-body-md); /* 18px */
+  font-size: var(--font-size-body-md);
+  /* 18px */
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -267,8 +306,10 @@ fieldset.form__field {
 /* 라디오 버튼이 선택(checked)됐을 때: 부모 라벨 스타일 변경 */
 /* :has() 선택자: "내부에 checked된 input을 가진" 라벨을 선택 */
 .form__radio-label:has(.form__radio:checked) {
-  background-color: var(--color-green-200); /* 민트 배경 */
-  border-color: var(--color-green-600);     /* 진한 초록 테두리 */
+  background-color: var(--color-green-200);
+  /* 민트 배경 */
+  border-color: var(--color-green-600);
+  /* 진한 초록 테두리 */
 }
 
 /* 기본 라디오 버튼 외형 커스터마이징 */
@@ -276,16 +317,20 @@ fieldset.form__field {
   /* 브라우저 기본 라디오 모양 제거 */
   appearance: none;
   -webkit-appearance: none;
-  width: 1.25rem;  /* 20px */
-  height: 1.25rem; /* 20px */
+  width: 1.25rem;
+  /* 20px */
+  height: 1.25rem;
+  /* 20px */
   border: 1px solid var(--border-color);
-  border-radius: 50%; /* 원형으로 */
+  border-radius: 50%;
+  /* 원형으로 */
   cursor: pointer;
   transition: border-color 0.2s ease;
   /* 중앙에 체크 점을 그리기 위한 레이어 준비 */
   display: grid;
   place-items: center;
-  flex-shrink: 0; /* 텍스트가 길어도 라디오 원이 찌그러지지 않도록 */
+  flex-shrink: 0;
+  /* 텍스트가 길어도 라디오 원이 찌그러지지 않도록 */
 }
 
 /* 선택됐을 때 라디오 내부에 초록 점 그리기 */
@@ -296,8 +341,10 @@ fieldset.form__field {
 /* ::before 가상 요소로 내부 채워진 원(점) 생성 */
 .form__radio:checked::before {
   content: '';
-  width: 0.625rem;  /* 10px */
-  height: 0.625rem; /* 10px */
+  width: 0.625rem;
+  /* 10px */
+  height: 0.625rem;
+  /* 10px */
   border-radius: 50%;
   background-color: var(--color-green-600);
 }
@@ -320,13 +367,16 @@ fieldset.form__field {
    ============================================= */
 .form__field--checkbox {
   gap: var(--spacing-150);
+  margin: 1.25rem 0;
+  /* 위아래 여백: 20px */
 }
 
 .form__checkbox-label {
   display: flex;
   align-items: center;
   gap: var(--spacing-200);
-  font-size: var(--font-size-body-md); /* 18px */
+  font-size: var(--font-size-body-md);
+  /* 18px */
   cursor: pointer;
 }
 
@@ -334,10 +384,13 @@ fieldset.form__field {
 .form__checkbox {
   appearance: none;
   -webkit-appearance: none;
-  width: 1.125rem;  /* 18px */
-  height: 1.125rem; /* 18px */
+  width: 1.125rem;
+  /* 18px */
+  height: 1.125rem;
+  /* 18px */
   border: 1px solid var(--border-color);
-  border-radius: 0.125rem; /* 약간 둥근 모서리 */
+  border-radius: 0.125rem;
+  /* 약간 둥근 모서리 */
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
   /* 체크 표시를 내부 중앙에 배치 */
@@ -363,7 +416,8 @@ fieldset.form__field {
   height: 0.35rem;
   border-left: 2px solid var(--color-white);
   border-bottom: 2px solid var(--color-white);
-  transform: rotate(-45deg) translateY(-2px); /* 체크 모양으로 기울이기 */
+  transform: rotate(-45deg) translateY(-2px);
+  /* 체크 모양으로 기울이기 */
 }
 
 /* 체크박스 포커스 링 (접근성) */
@@ -377,7 +431,8 @@ fieldset.form__field {
    📌 11. 에러 메시지 (Error Messages)
    ============================================= */
 .form__error {
-  font-size: var(--font-size-body-sm); /* 16px */
+  font-size: var(--font-size-body-sm);
+  /* 16px */
   color: var(--color-red);
   /* 기본적으로 숨겨져 있음 (JS에서 hidden 속성으로 제어) */
 }
@@ -388,9 +443,11 @@ fieldset.form__field {
    ============================================= */
 .form__submit-btn {
   width: 100%;
-  padding: var(--spacing-200) var(--spacing-400); /* 세로 16px, 가로 32px */
+  padding: var(--spacing-200) var(--spacing-500);
+  /* 세로 16px, 가로 40px */
   font-family: var(--font-family);
-  font-size: var(--font-size-body-md); /* 18px */
+  font-size: var(--font-size-body-md);
+  /* 18px */
   font-weight: 700;
   color: var(--color-white);
   background-color: var(--color-green-600);
@@ -402,7 +459,8 @@ fieldset.form__field {
 
 /* 버튼 호버: 배경색을 살짝 어둡게 */
 .form__submit-btn:hover {
-  background-color: hsl(169, 82%, 18%); /* Green 600보다 어두운 버전 */
+  background-color: hsl(169, 82%, 18%);
+  /* Green 600보다 어두운 버전 */
 }
 
 /* 버튼 클릭(active): 살짝 눌리는 효과 */
@@ -422,16 +480,21 @@ fieldset.form__field {
    폼 제출 성공 시 화면 상단에 나타나는 알림창
    ============================================= */
 .toast {
-  position: fixed;              /* 스크롤해도 항상 같은 위치에 표시 */
-  top: var(--spacing-300);      /* 화면 상단에서 24px 아래 */
+  position: fixed;
+  /* 스크롤해도 항상 같은 위치에 표시 */
+  top: var(--spacing-300);
+  /* 화면 상단에서 24px 아래 */
   left: 50%;
-  transform: translateX(-50%); /* 수평 중앙 정렬 트릭 */
+  transform: translateX(-50%);
+  /* 수평 중앙 정렬 트릭 */
   background-color: var(--color-grey-900);
   color: var(--color-white);
   border-radius: var(--border-radius-card);
   padding: var(--spacing-300) var(--spacing-400);
-  max-width: 28rem; /* 448px */
-  width: calc(100% - var(--spacing-400)); /* 좌우 여백 확보 */
+  max-width: 28rem;
+  /* 448px */
+  width: calc(100% - var(--spacing-400));
+  /* 좌우 여백 확보 */
   /* 토스트가 항상 맨 위에 보이도록 */
   z-index: 1000;
 }
@@ -449,13 +512,15 @@ fieldset.form__field {
 }
 
 .toast__title {
-  font-size: var(--font-size-body-md); /* 18px */
+  font-size: var(--font-size-body-md);
+  /* 18px */
   font-weight: 700;
   line-height: var(--line-height-body);
 }
 
 .toast__body {
-  font-size: var(--font-size-body-sm); /* 16px */
+  font-size: var(--font-size-body-sm);
+  /* 16px */
   color: var(--color-grey-500);
   line-height: var(--line-height-body);
 }
@@ -465,7 +530,8 @@ fieldset.form__field {
    📌 14. 출처 표시 (Attribution Footer)
    ============================================= */
 .attribution {
-  font-size: 0.6875rem; /* 11px */
+  font-size: 0.6875rem;
+  /* 11px */
   text-align: center;
   padding: var(--spacing-200) 0 var(--spacing-300);
   color: var(--color-grey-900);
