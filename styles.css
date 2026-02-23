@@ -1,48 +1,49 @@
 /* =============================================
-   📌 0. 디자인 토큰 (Design Tokens)
-   style-guide.md의 모든 값을 CSS 변수로 등록
-   집의 자재 창고처럼, 한번 등록하면 어디서든 꺼내 씀
+   📌 0. 디자인 토큰 (CSS 변수)
+   [Why] 색상·폰트·간격 같은 값을 한 곳에서 등록하면
+   디자인 변경 시 이 섹션만 수정하면 전체 스타일에 반영됩니다.
+   마치 "자재 창고"처럼, 부품을 한 번만 등록해두고 어디서든 꺼내 씁니다.
+   출처: style-guide.md 기준값을 rem/px 변환 후 등록
    ============================================= */
 :root {
   /* --- 색상 (Colors) --- */
-  /* 포인트색: 초록 계열 */
   --color-green-200: hsl(148, 38%, 91%);
-  /* 연한 민트 (선택된 라디오 배경색) */
+  /* 연한 민트 (선택된 라디오 배경, 페이지 배경) */
   --color-green-600: hsl(169, 82%, 27%);
-  /* 진한 초록 (버튼 배경, 체크 아이콘) */
-  /* 포인트색: 에러 빨강 */
+  /* 진한 초록 (버튼, 포커스, 체크 아이콘) */
+  --color-green-600-dark: hsl(169, 82%, 18%);
+  /* 더 어두운 초록 (버튼 호버): green-600보다 명도 9% 낮춰 눌리는 느낌을 줍니다 */
   --color-red: hsl(0, 66%, 54%);
-  /* 에러 메시지, 에러 테두리 */
-  /* 중립색 (Neutral) */
+  /* 에러 빨강 (에러 메시지, 에러 테두리) */
   --color-white: hsl(0, 0%, 100%);
-  /* 카드 배경, 버튼 텍스트 */
+  /* 흰색 (카드 배경, 버튼 텍스트) */
   --color-grey-500: hsl(186, 15%, 59%);
-  /* 보조 텍스트, 플레이스홀더 */
+  /* 중간 회색 (기본 테두리): 너무 진하지 않아 입력 전 비활성 상태를 표현합니다 */
   --color-grey-900: hsl(187, 24%, 22%);
-  /* 메인 텍스트, 제목 */
+  /* 진한 회색 (메인 텍스트, 제목): 순수 검정 대신 따뜻한 회색으로 눈의 피로를 줄입니다 */
+  --color-link: hsl(228, 45%, 44%);
+  /* 링크 색상 (attribution 내 a 태그) */
 
   /* --- 타이포그래피 (Typography) --- */
   --font-family: 'Karla', sans-serif;
-  /* 프로젝트 전체 폰트 */
-  /* 글씨 크기 */
   --font-size-heading: 2rem;
-  /* 32px: 제목 */
+  /* 32px: 대제목 (h1 "Contact Us") */
   --font-size-body-md: 1.125rem;
-  /* 18px: 본문 중간 */
+  /* 18px: 입력창 내부 텍스트, 라디오 옵션 등 주요 입력 요소 */
   --font-size-body-sm: 1rem;
-  /* 16px: 본문 작음 (라벨, 에러 등) */
-  /* 줄 간격 */
+  /* 16px: 라벨, 에러 메시지 등 보조적 텍스트 */
+  --font-size-attribution: 0.6875rem;
+  /* 11px: 출처 표시 (가장 작은 텍스트) */
   --line-height-heading: 1;
-  /* 100% */
+  /* 100%: 대제목은 줄 간격을 딱 글자 크기만큼으로 압축해 단단하게 보입니다 */
   --line-height-body: 1.5;
-  /* 150% */
-  /* 자간 */
+  /* 150%: 본문 가독성을 위한 표준 줄 간격 */
   --letter-spacing-heading: -1px;
-  /* 제목 자간을 살짝 좁혀서 단단하게 */
+  /* 자간을 살짝 좁혀 큰 제목이 더 탄탄하게 보이도록 합니다 */
 
   /* --- 간격 (Spacing) --- */
   --spacing-1600: 8rem;
-  /* 128px: 초대형 */
+  /* 128px */
   --spacing-500: 2.5rem;
   /* 40px */
   --spacing-400: 2rem;
@@ -56,47 +57,77 @@
   --spacing-100: 0.5rem;
   /* 8px */
 
+  /* --- 크기 (Sizes) --- */
+  --size-btn-height: 59px;
+  /* Submit 버튼 고정 높이: 디자인 시안 기준값 (터치 타겟 최소 권장 44px 초과) */
+  --size-checkbox: 1.125rem;
+  /* 체크박스 크기: 18px (디자인 시안 기준) */
+  --size-radio: 1.25rem;
+  /* 라디오 버튼 크기: 20px (디자인 시안 기준) */
+  --size-textarea-min-height: 9.375rem;
+  /* textarea 최소 높이: 150px. 너무 작으면 메시지 입력이 불편합니다 */
+  --size-card-max-width: 46rem;
+  /* 카드 최대 너비: 736px. 디자인 시안 데스크탑 카드 너비 기준값 */
+  --size-toast-max-width-tablet: 498px;
+  /* 태블릿에서 토스트 최대 너비: 디자인 시안 기준 */
+
   /* --- 기타 (Misc) --- */
   --border-radius-card: 0.75rem;
   /* 카드 모서리 둥글기: 12px */
   --border-radius-input: 0.5rem;
   /* 입력창 모서리 둥글기: 8px */
+  --border-radius-checkbox: 0.125rem;
+  /* 체크박스 모서리: 2px (완전한 직사각형보다 살짝 부드럽게) */
   --border-color: var(--color-grey-500);
-  /* 기본 테두리 색 */
+  /* 기본 테두리 색: 회색으로 입력 전 중립 상태를 표현합니다 */
+  --z-index-toast: 1000;
+  /* 토스트는 다른 요소 위에 항상 떠있어야 하므로 높은 값을 씁니다 */
 }
 
 
 /* =============================================
    📌 1. 전역 리셋 (Global Reset)
-   브라우저마다 다른 기본 스타일을 초기화해서
-   모든 곳에서 동일하게 보이도록 맞춰줌
+   [Why] Chrome, Firefox, Safari 등 브라우저마다 기본 여백·패딩이 다릅니다.
+   이를 그냥 두면 브라우저마다 레이아웃이 달라집니다.
+   box-sizing: border-box를 적용하면 padding과 border가 width 계산에 포함되어
+   "내가 지정한 크기가 최종 크기"가 되어 레이아웃 계산이 직관적이 됩니다.
+   [Result] 모든 환경에서 동일한 초기 상태에서 스타일링을 시작합니다.
    ============================================= */
 *,
 *::before,
 *::after {
-  /* box-sizing: border-box
-     padding과 border를 너비(width)에 포함시켜 계산
-     집 벽 두께를 면적에 포함시키는 것처럼 직관적인 크기 계산 */
+  /* padding과 border를 width에 포함시켜 직관적인 크기 계산이 가능하도록 설정 */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
 /* =============================================
-   📌 2. 기본 바디 설정 (Base)
+   📌 2. 기본 바디/타이포그래피 (Base)
+   [Why] 폰트, 기본 색상, 줄 간격을 body에 한번만 설정하면
+   하위 모든 요소가 상속(Cascading)받아 일관된 기본값을 갖습니다.
    ============================================= */
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-body-sm);
-  /* 16px 기본값 */
   color: var(--color-grey-900);
   line-height: var(--line-height-body);
   background-color: var(--color-green-200);
-  /* 페이지 전체 민트 배경 */
+  /* 페이지 전체 민트 배경: 흰 카드가 더욱 돋보이게 하는 대비 효과 */
 }
 
-/* 스크린 리더 전용 숨김 클래스
-   화면에는 보이지 않지만 스크린 리더가 읽을 수 있음 */
+
+/* =============================================
+   📌 3. 유틸리티 / 공통 상태 클래스 (Utilities)
+   ============================================= */
+
+/* .sr-only (Screen Reader Only - 스크린 리더 전용 숨김 클래스)
+   [Why] display: none이나 visibility: hidden은 스크린 리더도 무시합니다.
+   시각적으로는 안 보이지만 스크린 리더는 읽어야 하는 경우(예: fieldset의 legend)에
+   이 패턴을 사용합니다. position: absolute + 1px 크기 + clip으로 화면에서 제거하면서
+   접근성 트리(Accessibility Tree)에는 남아있게 됩니다.
+   [Result] 시각 사용자에게는 보이지 않지만, 스크린 리더는 내용을 낭독합니다. */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -111,37 +142,39 @@ body {
 
 
 /* =============================================
-   📌 3. 페이지 레이아웃 (Page Layout)
-   카드를 화면 중앙에 배치하는 컨테이너
+   📌 4. 레이아웃 (Layout)
+   페이지 전체 구조와 카드 배치를 담당합니다.
    ============================================= */
+
+/* .page (페이지 컨테이너)
+   [Why] min-height: 100dvh + flex + 중앙 정렬 조합으로 카드를 뷰포트 정중앙에 배치합니다.
+   overflow: auto 대신 dvh를 쓰면 모바일 브라우저의 주소창 높이 변동도 고려한
+   정확한 화면 높이를 얻습니다.
+   [Result] 카드가 화면 정중앙에 위치하며, 카드보다 화면이 작아지면 스크롤이 생깁니다. */
 .page {
-  /* 최소 높이를 화면 전체(100dvh)로 설정 */
   min-height: 100dvh;
-  /* Flexbox로 카드를 수직+수평 중앙 배치 */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 카드가 화면 끝에 붙지 않도록 여백 */
   padding: var(--spacing-400) var(--spacing-200);
 }
 
-
-/* =============================================
-   📌 4. 카드 (Card)
-   폼을 감싸는 흰색 둥근 박스
-   ============================================= */
+/* .card (폼 카드 래퍼)
+   [Why] max-width로 최대 너비를 제한해 데스크탑에서 카드가 너무 넓어지지 않습니다.
+   width: 100%와 함께 쓰면 모바일에선 꽉 차고 데스크탑에선 시안 기준 너비를 유지합니다.
+   [Result] 모든 화면 크기에서 읽기 좋은 카드 너비를 유지합니다. */
 .card {
   background-color: var(--color-white);
   border-radius: var(--border-radius-card);
   padding: var(--spacing-300);
-  /* 32px */
   width: 100%;
-  /* 카드의 최대 너비: 데스크탑에서 너무 넓어지는 것 방지 */
-  max-width: 46rem;
-  /* 736px */
+  max-width: var(--size-card-max-width);
 }
 
-/* 카드 제목: "Contact Us" */
+/* .card__title ("Contact Us" 대제목)
+   [Why] letter-spacing을 음수(-1px)로 설정하면 글자 간격이 좁아지며
+   큰 폰트 크기에서 더 응집력 있고 강하게 보이는 효과를 줍니다.
+   [Result] 32px 크기의 제목이 자간 조정으로 품격 있어 보입니다. */
 .card__title {
   font-size: var(--font-size-heading);
   font-weight: 700;
@@ -149,47 +182,48 @@ body {
   letter-spacing: var(--letter-spacing-heading);
   color: var(--color-grey-900);
   margin-bottom: var(--spacing-400);
-  /* 제목과 폼 사이 간격: 32px */
 }
 
 
 /* =============================================
-   📌 5. 폼 레이아웃 (Form Layout)
+   📌 5. 폼 컴포넌트 (Form Components)
+   [설계 의도] BEM(Block__Element--Modifier) 방법론으로 클래스를 구조화했습니다.
+   - Block:    .form (폼 전체를 대표하는 독립적인 컴포넌트)
+   - Element:  .form__field, .form__label, .form__input, .form__error 등
+   - Modifier: .form__input--error (에러 상태), .form__input--textarea (textarea 전용)
+   이 구조 덕분에 하나의 클래스 이름만으로 어느 Block에 속하고
+   어떤 상태인지를 즉시 파악할 수 있습니다.
    ============================================= */
+
+/* --- 5-1. 폼 레이아웃 --- */
+
+/* .form (폼 전체 컨테이너)
+   [Why] flex-direction: column + gap으로 각 폼 필드 사이에
+   일정한 간격(24px)을 자동으로 유지합니다.
+   margin을 개별로 주는 방식보다 구조 변경 시 유지보수가 쉽습니다. */
 .form {
-  /* 각 폼 필드 사이의 간격: 24px */
   display: flex;
   flex-direction: column;
   gap: var(--spacing-300);
 }
 
-/* fieldset 기본 스타일 초기화 */
+/* .form__name-group (First Name + Last Name을 묶는 fieldset)
+   [Why] fieldset의 기본 스타일(회색 테두리, 안쪽 여백)을 제거하고 flex 레이아웃을 적용합니다.
+   모바일 기본값은 flex-direction: column으로 두 필드가 세로로 배치됩니다.
+   768px 이상에서는 row로 전환됩니다 (Section 8 미디어 쿼리 참고). */
 .form__name-group {
   border: none;
   padding: 0;
-  /* 모바일: 이름/성이 세로로 배치 */
   display: flex;
   flex-direction: column;
+  /* 모바일: 세로 배치 */
   gap: var(--spacing-300);
 }
 
-/* 데스크탑(768px 이상): 이름/성이 가로로 나란히 배치 */
-@media (min-width: 768px) {
-  .form__name-group {
-    flex-direction: row;
-  }
-
-  /* 나란히 배치될 때 각 필드가 반반씩 공간 차지 */
-  .form__name-group .form__field {
-    flex: 1;
-  }
-}
-
-
-/* =============================================
-   📌 6. 폼 필드 공통 (Form Fields)
-   라벨, 입력창, 에러메시지를 하나로 묶는 단위
-   ============================================= */
+/* .form__field (라벨 + 입력창 + 에러 메시지 묶음 단위)
+   [Why] 이 래퍼가 있어야 에러 메시지가 해당 필드 바로 아래에 위치합니다.
+   gap: 8px으로 라벨과 입력창 사이 간격을 줍니다.
+   [Result] 어느 필드에서 에러가 났는지 시각적으로 즉시 파악할 수 있습니다. */
 .form__field {
   display: flex;
   flex-direction: column;
@@ -197,95 +231,115 @@ body {
   /* 라벨과 입력창 사이 간격: 8px */
 }
 
-/* fieldset은 border 기본값이 있어서 초기화 필요 */
+/* fieldset.form__field (Query Type 라디오 fieldset에 사용)
+   [Why] fieldset은 기본적으로 border와 padding이 있어,
+   .form__field와 동일한 레이아웃으로 보이게 하려면 명시적으로 초기화해야 합니다. */
 fieldset.form__field {
   border: none;
   padding: 0;
 }
 
+/* .form__field--checkbox (BEM Modifier: 체크박스 필드 전용)
+   [Why] 체크박스 영역은 디자인 시안상 위아래로 추가 여백을 줘야 합니다.
+   기본 .form__field의 재사용성을 해치지 않도록 Modifier 클래스로 분리했습니다. */
+.form__field--checkbox {
+  margin: 1.25rem 0;
+}
 
-/* =============================================
-   📌 7. 라벨 (Labels)
-   ============================================= */
+
+/* --- 5-2. 라벨 --- */
+
+/* .form__label
+   [Why] cursor: pointer를 추가하면 라벨 위에 마우스를 올렸을 때 손 모양 커서가 나타납니다.
+   [Result] 라벨 클릭으로 입력창에 포커스할 수 있다는 것을 사용자가 직관적으로 인지합니다. */
 .form__label {
   font-size: var(--font-size-body-sm);
-  /* 16px */
   font-weight: 400;
   color: var(--color-grey-900);
   cursor: pointer;
-  /* 손가락 커서: 클릭 가능함을 암시 */
 }
 
-/* 필수 항목 별표(*)의 색상 */
+/* .form__required (필수 항목 별표 *)
+   [Why] 초록색으로 지정해 배경색(연한 민트)과 구분되는 포인트를 줍니다.
+   HTML에서 aria-hidden="true"와 함께 사용해 스크린 리더는 읽지 않습니다. */
 .form__required {
   color: var(--color-green-600);
   margin-left: var(--spacing-100);
 }
 
 
-/* =============================================
-   📌 8. 입력창 (Inputs & Textarea)
-   모든 text 입력창에 공통으로 적용
-   ============================================= */
+/* --- 5-3. 텍스트 입력창 (input, textarea) --- */
+
+/* .form__input (기본 입력창 스타일 - BEM Block의 핵심 Element)
+   [설계 의도] input과 textarea가 동일한 .form__input 클래스를 공유합니다.
+   공통 스타일(테두리, 패딩, 폰트 등)을 이 클래스 하나에서 관리하고,
+   textarea만의 특성은 .form__input--textarea Modifier로 분리했습니다.
+   outline: none으로 기본 아웃라인을 제거하되, :focus-visible 에서 커스텀 포커스 링을 제공합니다.
+   단순히 outline: none만 하면 키보드 사용자가 포커스 위치를 알 수 없어 접근성이 깨집니다. */
 .form__input {
   width: 100%;
   padding: var(--spacing-150) var(--spacing-300);
   /* 세로 12px, 가로 24px */
   font-family: var(--font-family);
   font-size: var(--font-size-body-md);
-  /* 18px */
   color: var(--color-grey-900);
   background-color: transparent;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-input);
-  /* 부드러운 테두리 색 전환 애니메이션 */
   transition: border-color 0.2s ease;
-  /* outline 제거 후 직접 스타일 처리 (접근성 대신 :focus-visible로 제공) */
   outline: none;
+  /* outline 제거 후 :focus-visible로 접근성 제공 */
   cursor: pointer;
 }
 
-/* 호버(마우스를 올렸을 때): 테두리를 진한 초록으로 변경 */
-.form__input:hover {
-  border-color: var(--color-green-600);
-}
-
-/* 포커스(키보드 탭 또는 클릭으로 선택했을 때): 테두리를 진한 초록으로 변경 */
+/* .form__input:focus-visible (키보드 포커스 상태)
+   [Why] :focus 대신 :focus-visible을 쓰는 이유:
+   :focus는 마우스 클릭 시에도 발동됩니다. 마우스 사용자에게 불필요한 외곽선이
+   생기는 문제를 :focus-visible이 해결합니다. 키보드 탭 이동 시에만 포커스 링이 나타납니다.
+   [Result] 마우스 사용자: 초록 테두리만 보임 / 키보드 사용자: 초록 테두리 + 외곽 box-shadow */
 .form__input:focus-visible {
   border-color: var(--color-green-600);
-  /* 시각적 포커스 링: 키보드 사용자를 위한 필수 접근성 요소 */
   box-shadow: 0 0 0 2px var(--color-green-600);
 }
 
-/* 에러 상태: JS에서 .is-error 클래스를 추가할 때 */
-.form__input.is-error {
+/* .form__input--error (BEM Modifier: 에러 상태)
+   [설계 의도] 에러 스타일을 Base 클래스(.form__input)에서 분리하고
+   JS(showError 함수)가 이 Modifier 클래스를 동적으로 추가/제거합니다.
+   [Why] "평소 상태"와 "에러 상태"를 별도 클래스로 분리한 이유:
+   JS에서 classList.add/remove 한 번으로 상태 전환이 가능하고 유지보수가 쉽습니다.
+   [Result] JS에서 classList.add('form__input--error') 호출 즉시 빨간 테두리로 바뀝니다. */
+.form__input--error {
   border-color: var(--color-red);
 }
 
-/* textarea만 적용: 높이 고정, 크기 조절 방향 제한 */
+/* .form__input--textarea (BEM Modifier: textarea 전용 확장)
+   [Why] resize: vertical로 가로 크기 변경을 막습니다.
+   가로 크기까지 바꾸면 레이아웃이 깨질 수 있어 세로 방향만 허용합니다. */
 .form__input--textarea {
   resize: vertical;
-  /* 세로 방향으로만 크기 조절 가능 */
-  min-height: 9.375rem;
-  /* 최소 높이: 150px */
+  min-height: var(--size-textarea-min-height);
 }
 
 
-/* =============================================
-   📌 9. 라디오 버튼 그룹 (Radio Buttons)
-   ============================================= */
+/* --- 5-4. 라디오 버튼 그룹 --- */
+
+/* .form__radio-group (라디오 옵션 목록 컨테이너)
+   [Why] 모바일에서는 column(세로), 태블릿 이상에서는 row(가로)로 전환됩니다.
+   margin-top으로 legend(라벨)와의 간격을 별도로 줍니다. */
 .form__radio-group {
   display: flex;
   flex-direction: column;
+  /* 모바일: 세로 배치 */
   gap: var(--spacing-200);
-  /* 라디오 버튼 사이 간격: 16px */
   margin-top: var(--spacing-200);
-  /* 라벨과 라디오 그룹 사이 간격: 16px */
 }
 
-/* 각 라디오 버튼 옵션을 감싸는 박스 */
+/* .form__radio-label (라디오 옵션 카드 - 원형 버튼 + 텍스트 묶음)
+   [설계 의도] 라디오 input을 label 안에 넣고 label 전체를 카드처럼 스타일링했습니다.
+   [Why] 작은 원형 버튼만 클릭하는 것보다 카드 전체가 클릭 가능한 영역이면
+   터치 스크린에서 선택하기 훨씬 쉽습니다 (터치 타겟 확대 효과).
+   transition: 선택/해제 시 배경색과 테두리가 0.2초에 걸쳐 부드럽게 바뀝니다. */
 .form__radio-label {
-  /* 원형 라디오와 텍스트를 수평 정렬 */
   display: flex;
   align-items: center;
   gap: var(--spacing-150);
@@ -293,18 +347,15 @@ fieldset.form__field {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-input);
   font-size: var(--font-size-body-md);
-  /* 18px */
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* 라디오 라벨 호버 */
-.form__radio-label:hover {
-  border-color: var(--color-green-600);
-}
-
-/* 라디오 버튼이 선택(checked)됐을 때: 부모 라벨 스타일 변경 */
-/* :has() 선택자: "내부에 checked된 input을 가진" 라벨을 선택 */
+/* .form__radio-label:has(.form__radio:checked) (선택된 라디오 카드 스타일)
+   [Why] CSS :has() 선택자는 "내부에 체크된 라디오가 있는 label"을 골라냅니다.
+   과거에는 JS로 처리했지만, :has()를 이용하면 CSS만으로 부모 요소의 스타일을
+   자식 상태에 따라 변경할 수 있습니다.
+   [Result] 라디오 선택 즉시 카드 배경이 민트색, 테두리가 초록색으로 바뀝니다. */
 .form__radio-label:has(.form__radio:checked) {
   background-color: var(--color-green-200);
   /* 민트 배경 */
@@ -312,142 +363,141 @@ fieldset.form__field {
   /* 진한 초록 테두리 */
 }
 
-/* 기본 라디오 버튼 외형 커스터마이징 */
+/* .form__radio (커스텀 라디오 버튼)
+   [Why] appearance: none으로 브라우저 기본 라디오 버튼을 제거하고 완전히 새로 꾸밉니다.
+   display: grid + place-items: center는 가상 요소를 정중앙에 배치하기 위한 패턴입니다.
+   flex-shrink: 0으로 텍스트가 길어져도 원형 버튼이 찌그러지지 않습니다. */
 .form__radio {
-  /* 브라우저 기본 라디오 모양 제거 */
   appearance: none;
   -webkit-appearance: none;
-  width: 1.25rem;
-  /* 20px */
-  height: 1.25rem;
-  /* 20px */
+  width: var(--size-radio);
+  height: var(--size-radio);
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  /* 원형으로 */
+  /* 원형 */
   cursor: pointer;
   transition: border-color 0.2s ease;
-  /* 중앙에 체크 점을 그리기 위한 레이어 준비 */
   display: grid;
   place-items: center;
   flex-shrink: 0;
   /* 텍스트가 길어도 라디오 원이 찌그러지지 않도록 */
 }
 
-/* 선택됐을 때 라디오 내부에 초록 점 그리기 */
+/* .form__radio:checked (라디오 선택됐을 때)
+   [Why] ::before 가상 요소 대신 SVG 이미지 파일을 background-image로 사용합니다.
+   SVG는 어떤 DPI(레티나 디스플레이 포함)에서도 선명하게 렌더링됩니다.
+   border: none을 제거하는 이유: SVG 이미지 자체에 원형 테두리가 포함되어 있습니다. */
 .form__radio:checked {
-  border-color: var(--color-green-600);
+  background-image: url('assets/images/icon-radio-selected.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  /* SVG에 테두리가 이미 포함됨 */
 }
 
-/* ::before 가상 요소로 내부 채워진 원(점) 생성 */
+/* SVG로 대체했으므로 ::before 가상 요소는 더 이상 불필요 */
 .form__radio:checked::before {
-  content: '';
-  width: 0.625rem;
-  /* 10px */
-  height: 0.625rem;
-  /* 10px */
-  border-radius: 50%;
-  background-color: var(--color-green-600);
+  content: none;
 }
 
-/* 데스크탑(768px 이상): 라디오 버튼을 가로로 나란히 배치 */
-@media (min-width: 768px) {
-  .form__radio-group {
-    flex-direction: row;
-  }
-
-  /* 나란히 배치될 때 각 라디오 옵션이 반반씩 공간 차지 */
-  .form__radio-label {
-    flex: 1;
-  }
+/* .form__fieldset--error (BEM Modifier: 라디오 그룹 에러 상태)
+   [설계 의도] 라디오 그룹은 개별 input에 에러 테두리를 주는 대신,
+   에러 메시지(form__error)만으로 피드백을 제공합니다.
+   라디오 버튼 각각에 빨간 테두리를 주면 시각적으로 혼란스럽기 때문입니다.
+   이 클래스는 JS에서 추가/제거되어 향후 시각적 강조가 필요할 때 확장할 수 있는 훅(hook) 역할을 합니다. */
+.form__fieldset--error {
+  /* 시각적 강조 없이 에러 메시지만 표시 (라디오 그룹 특성상) */
 }
 
 
-/* =============================================
-   📌 10. 체크박스 (Checkbox)
-   ============================================= */
-.form__field--checkbox {
-  gap: var(--spacing-150);
-  margin: 1.25rem 0;
-  /* 위아래 여백: 20px */
-}
+/* --- 5-5. 체크박스 --- */
 
+/* .form__checkbox-label (체크박스 + 텍스트를 수평 정렬하는 라벨)
+   [Why] align-items: center로 체크박스 사각형과 텍스트의 수직 중앙을 맞춥니다.
+   gap으로 체크박스와 텍스트 사이에 16px 간격을 줍니다. */
 .form__checkbox-label {
   display: flex;
   align-items: center;
   gap: var(--spacing-200);
   font-size: var(--font-size-body-md);
-  /* 18px */
   cursor: pointer;
 }
 
-/* 기본 체크박스 커스터마이징 */
+/* .form__checkbox (커스텀 체크박스)
+   [설계 의도] 라디오 버튼(.form__radio)과 동일한 커스터마이징 패턴을 사용합니다.
+   통일된 패턴을 쓰면 유지보수 시 두 요소를 같이 수정하기 쉽습니다.
+   border-radius: 2px는 완전한 직사각형보다 살짝 부드러운 느낌을 줍니다. */
 .form__checkbox {
   appearance: none;
   -webkit-appearance: none;
-  width: 1.125rem;
-  /* 18px */
-  height: 1.125rem;
-  /* 18px */
+  width: var(--size-checkbox);
+  height: var(--size-checkbox);
   border: 1px solid var(--border-color);
-  border-radius: 0.125rem;
-  /* 약간 둥근 모서리 */
+  border-radius: var(--border-radius-checkbox);
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
-  /* 체크 표시를 내부 중앙에 배치 */
   display: grid;
   place-items: center;
   flex-shrink: 0;
 }
 
-.form__checkbox:hover {
-  border-color: var(--color-green-600);
-}
-
-/* 체크됐을 때: 진한 초록색 배경 + 흰 체크 표시 */
+/* .form__checkbox:checked (체크됐을 때)
+   [Why] 라디오 버튼과 동일하게 SVG 이미지로 체크 표시를 합니다.
+   [Result] 체크 시 사각형에 초록색 체크 아이콘 SVG가 나타납니다. */
 .form__checkbox:checked {
-  background-color: var(--color-green-600);
-  border-color: var(--color-green-600);
+  background-image: url('assets/images/icon-checkbox-check.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  /* SVG에 테두리가 이미 포함됨 */
 }
 
-/* 체크 표시 (✓)를 CSS로 그리기 */
+/* SVG로 대체했으므로 ::before 가상 요소는 더 이상 불필요 */
 .form__checkbox:checked::before {
-  content: '';
-  width: 0.7rem;
-  height: 0.35rem;
-  border-left: 2px solid var(--color-white);
-  border-bottom: 2px solid var(--color-white);
-  transform: rotate(-45deg) translateY(-2px);
-  /* 체크 모양으로 기울이기 */
+  content: none;
 }
 
-/* 체크박스 포커스 링 (접근성) */
+/* .form__checkbox:focus-visible (키보드 포커스 링)
+   [Why] 입력창(.form__input)은 box-shadow를 쓰지만, 체크박스는 크기가 작아
+   outline이 더 자연스럽게 어울립니다. outline-offset으로 요소와 약간 거리를 줍니다.
+   [Result] 키보드 탭으로 이동했을 때 초록색 외곽선이 나타나 현재 포커스 위치가 명확합니다. */
 .form__checkbox:focus-visible {
   outline: 2px solid var(--color-green-600);
   outline-offset: 2px;
 }
 
 
-/* =============================================
-   📌 11. 에러 메시지 (Error Messages)
-   ============================================= */
+/* --- 5-6. 에러 메시지 --- */
+
+/* .form__error (에러 메시지 텍스트)
+   [Why] hidden 속성으로 기본적으로 숨겨져 있습니다.
+   JS에서 removeAttribute('hidden')을 호출하면 표시됩니다.
+   display: none 대신 hidden 속성을 쓰는 이유: HTML 표준에서 권장하는 방식이며
+   aria-describedby 연결과도 더 잘 호환됩니다. */
 .form__error {
   font-size: var(--font-size-body-sm);
-  /* 16px */
   color: var(--color-red);
-  /* 기본적으로 숨겨져 있음 (JS에서 hidden 속성으로 제어) */
+  /* hidden 속성으로 평소엔 숨기고, JS에서 removeAttribute('hidden')으로 표시 */
 }
 
 
-/* =============================================
-   📌 12. 제출 버튼 (Submit Button)
-   ============================================= */
+/* --- 5-7. 제출 버튼 --- */
+
+/* .form__submit-btn (제출 버튼)
+   [Why] height를 고정값으로 설정한 이유:
+   padding만으로 높이를 설정하면 폰트 크기나 줄 간격 변경 시 버튼 높이가 달라집니다.
+   [매직 넘버] --size-btn-height (59px): 디자인 시안에 명시된 Submit 버튼의 정확한 높이값입니다.
+   transition: 배경색 변화(hover)와 크기 변화(active)를 부드럽게 처리합니다. */
 .form__submit-btn {
   width: 100%;
-  padding: var(--spacing-200) var(--spacing-500);
-  /* 세로 16px, 가로 40px */
+  height: var(--size-btn-height);
+  /* [매직 넘버] 59px: 디자인 시안 기준 Submit 버튼 고정 높이 */
+  padding: 0 var(--spacing-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-family);
   font-size: var(--font-size-body-md);
-  /* 18px */
   font-weight: 700;
   color: var(--color-white);
   background-color: var(--color-green-600);
@@ -457,18 +507,16 @@ fieldset.form__field {
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* 버튼 호버: 배경색을 살짝 어둡게 */
-.form__submit-btn:hover {
-  background-color: hsl(169, 82%, 18%);
-  /* Green 600보다 어두운 버전 */
-}
-
-/* 버튼 클릭(active): 살짝 눌리는 효과 */
+/* .form__submit-btn:active (클릭/탭 순간)
+   [Why] scale(0.98)로 버튼이 살짝 눌리는 물리적 피드백을 줍니다.
+   [Result] 클릭이 정상으로 접수됐다는 시각적 확인을 즉시 제공합니다. */
 .form__submit-btn:active {
   transform: scale(0.98);
 }
 
-/* 버튼 포커스 링 (접근성) */
+/* .form__submit-btn:focus-visible (키보드 포커스)
+   [Why] 탭으로 버튼에 도달했을 때 초록 외곽선을 표시합니다.
+   outline-offset: 3px은 버튼 테두리와 포커스 링 사이에 공간을 줘 더 명확하게 보입니다. */
 .form__submit-btn:focus-visible {
   outline: 2px solid var(--color-green-600);
   outline-offset: 3px;
@@ -476,30 +524,52 @@ fieldset.form__field {
 
 
 /* =============================================
-   📌 13. 성공 토스트 (Toast Notification)
-   폼 제출 성공 시 화면 상단에 나타나는 알림창
+   📌 6. 토스트 알림 (Toast Notification)
+   폼 제출 성공 시 화면 상단에 고정되어 나타나는 알림창입니다.
    ============================================= */
-.toast {
+
+/* .toast-container (토스트 위치 고정 바깥 컨테이너)
+   [설계 의도] 위치 제어(.toast-container)와 외양(.toast)을 분리했습니다.
+   [Why] position: fixed + left: 50% + translateX(-50%)는 요소를 화면 수평 중앙에
+   고정시키는 가장 표준적인 방법입니다.
+   pointer-events: none으로 이 컨테이너 자체는 클릭을 통과시키고,
+   내부의 .toast에만 pointer-events: auto를 줘 토스트 박스만 클릭을 받습니다.
+   [Result] 토스트가 화면 위에 떠있어도 뒤의 폼을 클릭하는 데 방해가 되지 않습니다. */
+.toast-container {
   position: fixed;
-  /* 스크롤해도 항상 같은 위치에 표시 */
   top: var(--spacing-300);
   /* 화면 상단에서 24px 아래 */
   left: 50%;
   transform: translateX(-50%);
-  /* 수평 중앙 정렬 트릭 */
+  /* 수평 정중앙 정렬 */
+  width: 100%;
+  z-index: var(--z-index-toast);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  /* 컨테이너 자체는 클릭을 방해하지 않음 */
+  padding: 0 var(--spacing-300);
+  /* 좌우 여백: 24px. 아주 좁은 화면에서 토스트가 화면 가장자리에 붙지 않도록 합니다. */
+}
+
+/* .toast (실제 알림 메시지 박스)
+   [Why] background-color로 진한 회색을 사용해 페이지 배경(민트)과 강한 대비를 줍니다.
+   사용자의 시선이 자연스럽게 이 알림으로 향합니다.
+   box-shadow는 토스트가 페이지 위에 떠있는 입체감을 표현합니다. */
+.toast {
+  pointer-events: auto;
+  /* 알림 박스 내부는 클릭 가능 */
   background-color: var(--color-grey-900);
   color: var(--color-white);
   border-radius: var(--border-radius-card);
-  padding: var(--spacing-300) var(--spacing-400);
-  max-width: 28rem;
-  /* 448px */
-  width: calc(100% - var(--spacing-400));
-  /* 좌우 여백 확보 */
-  /* 토스트가 항상 맨 위에 보이도록 */
-  z-index: 1000;
+  padding: var(--spacing-300);
+  /* 24px */
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 토스트 상단: 아이콘 + "Message Sent!" 텍스트 줄 */
+/* .toast__header (아이콘 + 제목 가로 정렬 영역)
+   [Why] align-items: center로 SVG 아이콘과 텍스트 제목의 수직 중앙을 맞춥니다. */
 .toast__header {
   display: flex;
   align-items: center;
@@ -507,36 +577,122 @@ fieldset.form__field {
   margin-bottom: var(--spacing-100);
 }
 
+/* .toast__icon (체크 아이콘)
+   [Why] flex-shrink: 0으로 제목 텍스트가 길어져도 아이콘이 찌그러지지 않습니다. */
 .toast__icon {
   flex-shrink: 0;
 }
 
+/* .toast__title ("Message Sent!" 제목) */
 .toast__title {
   font-size: var(--font-size-body-md);
-  /* 18px */
   font-weight: 700;
   line-height: var(--line-height-body);
 }
 
+/* .toast__body (본문 안내 메시지)
+   [Why] color: var(--color-green-200)로 연한 민트색을 사용합니다.
+   진한 회색 배경(--color-grey-900) 위에서 연한 민트색은
+   "성공"이라는 감정을 색상으로도 전달합니다. */
 .toast__body {
   font-size: var(--font-size-body-sm);
-  /* 16px */
-  color: var(--color-grey-500);
+  color: var(--color-green-200);
   line-height: var(--line-height-body);
 }
 
 
 /* =============================================
-   📌 14. 출처 표시 (Attribution Footer)
+   📌 7. 출처 표시 (Attribution)
    ============================================= */
 .attribution {
-  font-size: 0.6875rem;
-  /* 11px */
+  font-size: var(--font-size-attribution);
   text-align: center;
   padding: var(--spacing-200) 0 var(--spacing-300);
   color: var(--color-grey-900);
 }
 
 .attribution a {
-  color: hsl(228, 45%, 44%);
+  color: var(--color-link);
+}
+
+
+/* =============================================
+   📌 8. 미디어 쿼리 (Responsive / Media Queries)
+   [Why] 파일 최하단에 위치시키는 이유:
+   CSS는 위에서 아래로 읽히므로, 미디어 쿼리가 기본 스타일보다 나중에 선언되어야
+   올바르게 덮어씌워집니다 (Cascading의 원칙).
+   [설계 원칙] Mobile First: 기본 스타일은 모바일 기준으로 작성하고,
+   더 넓은 화면에서만 min-width 미디어쿼리로 추가 스타일을 적용합니다.
+   ============================================= */
+
+/* --- 태블릿 (768px 이상) --- */
+@media (min-width: 768px) {
+
+  /* 이름/성 그룹 (First + Last Name): 세로 → 가로 배치 전환
+     [Result] 두 필드가 나란히 한 줄에 배치됩니다. */
+  .form__name-group {
+    flex-direction: row;
+  }
+
+  /* 가로 배치 시 각 필드가 flex: 1로 동일한 너비(50%씩)를 차지합니다. */
+  .form__name-group .form__field {
+    flex: 1;
+  }
+
+  /* 라디오 그룹 (General Enquiry + Support Request): 세로 → 가로 배치 전환 */
+  .form__radio-group {
+    flex-direction: row;
+  }
+
+  /* 가로 배치 시 각 라디오 카드가 flex: 1로 동일한 너비(50%씩)를 차지합니다. */
+  .form__radio-label {
+    flex: 1;
+  }
+
+  /* .page 여백 확대
+     [매직 넘버] 128px: 디자인 시안의 태블릿 기준 상하 여백값 (--spacing-1600 변수와 동일)
+     [매직 넘버] 39px: 디자인 시안의 태블릿 기준 좌우 여백값 (변수화되지 않은 시안 고유값) */
+  .page {
+    padding: 128px 39px;
+  }
+
+  /* 카드 내부 여백 확대: 24px → 40px
+     [Why] 더 넓은 화면에서 카드 내용에 더 넉넉한 여백을 줘 시각적 안정감을 높입니다. */
+  .card {
+    padding: var(--spacing-500);
+  }
+
+  /* 토스트 최대 너비 제한
+     [매직 넘버] 498px: 디자인 시안의 태블릿 기준 토스트 최대 너비값.
+     카드보다 좁게 제한해 토스트가 너무 넓어 보이지 않도록 합니다. */
+  .toast-container {
+    max-width: var(--size-toast-max-width-tablet);
+  }
+}
+
+/* --- 데스크탑 (1024px 이상) --- */
+@media (min-width: 1024px) {
+
+  /* 데스크탑에서만 라디오 에러 메시지 상단 여백 추가
+     [Why] 라디오 그룹이 가로 배치로 변경되면서 에러 메시지와의 간격 조정이 필요합니다. */
+  #query-type-error {
+    margin-top: var(--spacing-100);
+  }
+
+  /* 호버(Hover) 효과: 데스크탑(마우스 환경)에서만 활성화
+     [Why] 모바일·태블릿 터치 스크린에서는 "Sticky Hover" 문제가 발생합니다.
+     손가락으로 탭하면 CSS :hover 상태가 다음 탭 전까지 그대로 남아있어
+     이전에 탭한 요소의 초록 테두리가 잔상처럼 비정상적으로 보입니다.
+     1024px 이상(= 마우스가 있는 환경)에서만 호버 스타일을 활성화하는 것이
+     이 잔상 문제를 방지하는 표준적인 패턴입니다.
+     [Result] 터치 스크린에서는 호버 효과 없이 깔끔하게 동작합니다. */
+  .form__input:hover,
+  .form__radio-label:hover,
+  .form__checkbox:hover {
+    border-color: var(--color-green-600);
+  }
+
+  .form__submit-btn:hover {
+    background-color: var(--color-green-600-dark);
+  }
 }
